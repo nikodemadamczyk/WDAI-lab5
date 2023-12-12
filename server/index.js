@@ -9,7 +9,8 @@ app.use(bodyParser.json());
 
 const users = [];
 
-const SECRET_KEY = "twoj_tajny_klucz";
+const SECRET_KEY = "TwojNowyTajnyKlucz123!";
+
 app.listen(3000, () => {
     console.log('Serwer działa na porcie 3000');
 });
@@ -39,6 +40,7 @@ app.post('/login', async (req, res) => {
         } else {
             res.send('Niepoprawne hasło');
         }
+
     } catch {
         res.status(500).send();
     }

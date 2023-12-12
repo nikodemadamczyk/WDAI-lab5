@@ -3,6 +3,9 @@ import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import ProductPage from './pages/ProductPage';
 import HelloWorld from './pages/HelloWorld';
+import Login from './components/Login';
+import Register from './components/Register';
+
 function App() {
     return (
         <Router>
@@ -16,11 +19,17 @@ function App() {
                         <li className="nav-item">
                             <Link className="nav-link" to="/">Strona Startowa</Link>
                         </li>
-                        <li className="nav-item">
-                            <Link className="nav-link" to="/products">Produkty</Link>
-                        </li>
+                        {/*<li className="nav-item">*/}
+                        {/*    <Link className="nav-link" to="/products">Produkty</Link>*/}
+                        {/*</li>*/}
                         <li className="nav-item">
                             <Link className="nav-link" to="/helloworld">Hello World</Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link className="nav-link" to="/login">Logowanie</Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link className="nav-link" to="/register">Rejestracja</Link>
                         </li>
                     </ul>
                 </div>
@@ -30,6 +39,8 @@ function App() {
                 <Route path="/products" element={<ProductPage />} />
                 <Route path="/helloworld" element={<HelloWorld />} />
                 <Route path="/" element={<HomePage />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/register" element={<Register />} />
             </Routes>
         </Router>
     );

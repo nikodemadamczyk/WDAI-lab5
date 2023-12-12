@@ -1,28 +1,24 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-
-export default function Login() {
+export default function Register() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const navigate = useNavigate();
-
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch('/login', {
+            const response = await fetch('/register', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({ username, password }),
             });
-            const data = await response.json();
-            if (data.token) {
-                localStorage.setItem('token', data.token);
-                navigate('/products'); // Przekierowanie do ProductPage
+            if (response.ok) {
+                navigate('/login');
             } else {
-                setError('Niepoprawna nazwa użytkownika lub hasło.');
+                setError('Błąd rejestracji. Spróbuj ponownie.');
             }
         } catch (err) {
             setError('Błąd serwera. Spróbuj ponownie później.');
@@ -31,7 +27,7 @@ export default function Login() {
 
     return (
         <form onSubmit={handleSubmit}>
-            <h2>Logowanie</h2>
+            <h2>Rejestracja</h2>
             <input
                 type="text"
                 value={username}
@@ -44,7 +40,7 @@ export default function Login() {
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Hasło"
             />
-            <button type="submit">Zaloguj się</button>
+            <button type="submit">Zarejestruj się</button>
             {error && <div>{error}</div>}
         </form>
     );
